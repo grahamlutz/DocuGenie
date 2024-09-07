@@ -1,0 +1,38 @@
+{
+  "name": "docugenie",
+  "version": "0.0.1",
+  "description": "AI-powered OpenAPI JSON generator for Express.js routes",
+  "main": "./dist/index.js",
+  "types": "./build/index.d.ts",
+  "bin": {
+    "docugenie": "./dist/index.js"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "clean": "del ./dist/*",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node-esm src/index.ts",
+    "test": "jest",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": ["openapi", "swagger", "generator", "ai", "express", "cli"],
+  "author": "Graham Lutz",
+  "license": "MIT",
+  "dependencies": {
+    "openai": "^4.0.0",
+    "commander": "^8.3.0",
+    "dotenv": "^10.0.0"
+  },
+  "devDependencies": {
+    "del-cli": "^5.0.0",
+    "@types/jest": "^27.0.0",
+    "@types/node": "^16.0.0",
+    "jest": "^27.0.0",
+    "ts-jest": "^27.0.0",
+    "typescript": "^4.5.0",
+    "ts-node": "^10.0.0"
+  }
+}
