@@ -5,6 +5,7 @@ import path from 'path';
 import { program } from 'commander';
 import OpenAI from 'openai';
 import { generateSwaggerUI } from './generateSwaggerUI';
+import { swaggerUITemplate } from './template';
 
 require('dotenv').config()
 
@@ -38,7 +39,7 @@ async function generateOpenApiSpec(fileContent: any) {
   // Remove backticks and code block formatting
   const rawContent = response.choices[0].message.content;
   const cleanedContent = rawContent!.replace(/```json|```/g, '');
-  console.log(cleanedContent);
+
   return JSON.parse(cleanedContent!);
 }
 
@@ -78,8 +79,8 @@ async function processRouteFiles(routesDir: any, outputDir: any, apiTitle: any) 
 
 
   const swaggerUiDir = path.join(outputDir, 'swagger-ui');
-  const templatePath = path.resolve('./src/index.html');
-  await generateSwaggerUI(openApiJsonPath, swaggerUiDir, templatePath);
+
+  await generateSwaggerUI(openApiJsonPath, swaggerUiDir, swaggerUITemplate);
 
 }
 

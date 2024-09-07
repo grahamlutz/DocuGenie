@@ -2,15 +2,12 @@ import fs from 'fs/promises';
 import path from 'path';
 import SwaggerUiDist from 'swagger-ui-dist';
 
-export async function generateSwaggerUI(openApiJsonPath: string, outputDir: string, templatePath: string) {
+export async function generateSwaggerUI(openApiJsonPath: string, outputDir: string, template: string) {
   // Read the OpenAPI JSON file
   const openApiJson = await fs.readFile(openApiJsonPath, 'utf-8');
 
   // Read the HTML template
-  let template = await fs.readFile(templatePath, 'utf-8');
-
-  // Replace the placeholder with the actual OpenAPI spec
-  template = template.replace('OPENAPI_SPEC_PLACEHOLDER', openApiJson);
+  const filledTemplate = template.replace('OPENAPI_SPEC_PLACEHOLDER', openApiJson);
 
   // Create the output directory if it doesn't exist
   await fs.mkdir(outputDir, { recursive: true });
@@ -26,7 +23,7 @@ export async function generateSwaggerUI(openApiJsonPath: string, outputDir: stri
   }
 
   // Write the filled template to index.html
-  await fs.writeFile(path.join(outputDir, 'index.html'), template);
+  await fs.writeFile(path.join(outputDir, 'index.html'), filledTemplate);
 
   console.log(`Swagger UI generated in ${outputDir}`);
 }
