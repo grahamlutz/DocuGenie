@@ -4,6 +4,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import { program } from 'commander';
 import OpenAI from 'openai';
+import { generateSwaggerUI } from './generateSwaggerUI';
 
 require('dotenv').config()
 
@@ -70,6 +71,16 @@ async function processRouteFiles(routesDir: any, outputDir: any, apiTitle: any) 
   } catch (error) {
     console.error('Error creating output directory or writing file:', error);
   }
+
+  const openApiJsonPath = path.join(outputDir, 'openapi.json');
+  await fs.writeFile(openApiJsonPath, JSON.stringify(openApiSpec, null, 2));
+  console.log(`OpenAPI specification generated in ${openApiJsonPath}`);
+
+
+  const swaggerUiDir = path.join(outputDir, 'swagger-ui');
+  const templatePath = path.resolve('./src/index.html');
+  await generateSwaggerUI(openApiJsonPath, swaggerUiDir, templatePath);
+
 }
 
 async function main() {
