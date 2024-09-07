@@ -1,6 +1,6 @@
 {
   "name": "docugenie",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "AI-powered OpenAPI JSON generator for Express.js routes",
   "main": "./dist/index.js",
   "types": "./build/index.d.ts",
