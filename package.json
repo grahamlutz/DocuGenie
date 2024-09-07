@@ -5,7 +5,7 @@
   "main": "./dist/index.js",
   "types": "./build/index.d.ts",
   "bin": {
-    "docugenie": "./dist/index.js"
+    "docugenie": "dist/index.js"
   },
   "files": [
     "dist/**/*"
@@ -18,7 +18,14 @@
     "test": "jest",
     "prepublishOnly": "npm run build"
   },
-  "keywords": ["openapi", "swagger", "generator", "ai", "express", "cli"],
+  "keywords": [
+    "openapi",
+    "swagger",
+    "generator",
+    "ai",
+    "express",
+    "cli"
+  ],
   "author": "Graham Lutz",
   "license": "MIT",
   "dependencies": {

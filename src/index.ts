@@ -12,7 +12,7 @@ const openai = new OpenAI({
 });
 
 program
-  .option('-r, --routes <dir>', 'Routes directory', './routes')
+  .option('-r, --routes <dir>', 'Routes directory', '.')
   .option('-o, --output <dir>', 'Output directory', './docs')
   .option('-t, --title <title>', 'API title', 'My API')
   .parse(process.argv);
